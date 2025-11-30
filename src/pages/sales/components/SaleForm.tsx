@@ -61,10 +61,10 @@ export function SaleForm({ sale, onSave }: SaleFormProps) {
   return (
     <div className="space-y-6 w-full" key={saleKey}>
       <div>
-        <h1 className="text-3xl font-bold text-foreground">
+        <h1 className="text-2xl font-bold text-foreground">
           {sale ? 'Editar Venda' : 'Nova Venda'}
         </h1>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-base text-muted-foreground">
           {sale ? 'Atualize os dados da venda' : 'Registre uma nova venda'}
         </p>
       </div>
@@ -114,8 +114,8 @@ export function SaleForm({ sale, onSave }: SaleFormProps) {
                 ))}
                 <div className="pt-4 border-t border-border">
                   <div className="flex justify-between items-center gap-4">
-                    <span className="text-xl font-semibold">Total:</span>
-                    <span className="text-2xl font-bold text-primary whitespace-nowrap">
+                    <span className="text-lg font-semibold">Total:</span>
+                    <span className="text-xl font-bold text-primary whitespace-nowrap">
                       {formatCurrency(calculateTotal())}
                     </span>
                   </div>
@@ -131,10 +131,10 @@ export function SaleForm({ sale, onSave }: SaleFormProps) {
           </div>
         )}
 
-        <div className="flex flex-col sm:flex-row gap-4">
+        <div className="flex flex-col-reverse gap-4 sm:flex-row">
           <Button
             type="button"
-            variant="outline"
+            variant="destructive"
             onClick={() => navigate('/sales')}
             className="flex-1 w-full sm:w-auto"
           >

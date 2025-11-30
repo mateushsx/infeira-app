@@ -1,47 +1,69 @@
-import { useState, useEffect } from "react";
-import type { Product, ProductUnit } from "@/types";
-import { PRODUCT_UNITS } from "@/utils/constants";
-import { parseCurrencyString, formatCurrencyString } from "@/utils/currency";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { CurrencyInput } from "@/components/ui/currency-input";
-import { Label } from "@/components/ui/label";
+import { useState, useEffect } from 'react';
+import type { Product, ProductUnit } from '@/types';
+import { PRODUCT_UNITS } from '@/utils/constants';
+import { parseCurrencyString, formatCurrencyString } from '@/utils/currency';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { CurrencyInput } from '@/components/ui/currency-input';
+import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+} from '@/components/ui/select';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 interface ProductFormProps {
   product?: Product | null;
   open: boolean;
   onClose: () => void;
-  onSave: (product: Omit<Product, "id" | "createdAt">) => void;
+  onSave: (product: Omit<Product, 'id' | 'createdAt'>) => void;
 }
 
-export function ProductForm({ product, open, onClose, onSave }: ProductFormProps) {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [unit, setUnit] = useState<ProductUnit>("Unidade");
-  const [notes, setNotes] = useState("");
+export function ProductForm({
+  product,
+  open,
+  onClose,
+  onSave,
+}: ProductFormProps) {
+  const getInitialName = () => product?.name || '';
+  const getInitialPrice = () =>
+    product ? formatCurrencyString(product.price) : '';
+  const getInitialUnit = (): ProductUnit => product?.unit || 'Unidade';
+  const getInitialNotes = () => product?.notes || '';
+
+  const [name, setName] = useState(getInitialName);
+  const [price, setPrice] = useState(getInitialPrice);
+  const [unit, setUnit] = useState<ProductUnit>(getInitialUnit);
+  const [notes, setNotes] = useState(getInitialNotes);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    if (product) {
-      setName(product.name);
-      setPrice(formatCurrencyString(product.price));
-      setUnit(product.unit);
-      setNotes(product.notes || "");
-    } else {
-      setName("");
-      setPrice("");
-      setUnit("Unidade");
-      setNotes("");
-    }
-    setErrors({});
+    if (!open) return;
+
+    const timer = setTimeout(() => {
+      if (product) {
+        setName(product.name);
+        setPrice(formatCurrencyString(product.price));
+        setUnit(product.unit);
+        setNotes(product.notes || '');
+      } else {
+        setName('');
+        setPrice('');
+        setUnit('Unidade');
+        setNotes('');
+      }
+      setErrors({});
+    }, 0);
+
+    return () => clearTimeout(timer);
   }, [product, open]);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -49,12 +71,12 @@ export function ProductForm({ product, open, onClose, onSave }: ProductFormProps
     const newErrors: Record<string, string> = {};
 
     if (!name.trim()) {
-      newErrors.name = "Nome é obrigatório";
+      newErrors.name = 'Nome é obrigatório';
     }
 
     const priceValue = parseCurrencyString(price);
     if (!price || priceValue <= 0) {
-      newErrors.price = "Preço deve ser maior que zero";
+      newErrors.price = 'Preço deve ser maior que zero';
     }
 
     if (Object.keys(newErrors).length > 0) {
@@ -74,10 +96,10 @@ export function ProductForm({ product, open, onClose, onSave }: ProductFormProps
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md w-[calc(100%-2rem)]">
+      <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>
-            {product ? "Editar Produto" : "Adicionar Produto"}
+            {product ? 'Editar Produto' : 'Adicionar Produto'}
           </DialogTitle>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -88,7 +110,7 @@ export function ProductForm({ product, open, onClose, onSave }: ProductFormProps
               value={name}
               onChange={(e) => {
                 setName(e.target.value);
-                if (errors.name) setErrors({ ...errors, name: "" });
+                if (errors.name) setErrors({ ...errors, name: '' });
               }}
               placeholder="Ex: Tomate"
             />
@@ -105,7 +127,7 @@ export function ProductForm({ product, open, onClose, onSave }: ProductFormProps
                 value={price}
                 onChange={(value) => {
                   setPrice(value);
-                  if (errors.price) setErrors({ ...errors, price: "" });
+                  if (errors.price) setErrors({ ...errors, price: '' });
                 }}
               />
               {errors.price && (
@@ -115,7 +137,10 @@ export function ProductForm({ product, open, onClose, onSave }: ProductFormProps
 
             <div className="space-y-2">
               <Label htmlFor="unit">Unidade *</Label>
-              <Select value={unit} onValueChange={(value) => setUnit(value as ProductUnit)}>
+              <Select
+                value={unit}
+                onValueChange={(value) => setUnit(value as ProductUnit)}
+              >
                 <SelectTrigger id="unit">
                   <SelectValue />
                 </SelectTrigger>
@@ -140,17 +165,14 @@ export function ProductForm({ product, open, onClose, onSave }: ProductFormProps
             />
           </div>
 
-          <div className="flex gap-2 justify-end">
-            <Button type="button" variant="outline" onClick={onClose}>
+          <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+            <Button type="button" variant="destructive" onClick={onClose}>
               Cancelar
             </Button>
-            <Button type="submit">
-              {product ? "Salvar" : "Adicionar"}
-            </Button>
+            <Button type="submit">{product ? 'Salvar' : 'Adicionar'}</Button>
           </div>
         </form>
       </DialogContent>
     </Dialog>
   );
 }
-

@@ -34,10 +34,10 @@ export default function DashboardPage() {
   return (
     <div className="space-y-8 w-full">
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold text-foreground">
+        <h1 className="text-2xl font-bold text-foreground">
           Olá, {user?.name || "Feirante"}!
         </h1>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-base text-muted-foreground">
           Bem-vindo ao seu painel de controle
         </p>
       </div>
@@ -45,12 +45,12 @@ export default function DashboardPage() {
       <div className="grid gap-4 md:grid-cols-3">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-lg font-semibold">Produtos</CardTitle>
-            <Package className="h-5 w-5 text-muted-foreground" />
+            <CardTitle className="text-base font-semibold">Produtos</CardTitle>
+            <Package className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{stats.totalProducts}</div>
-            <p className="text-sm text-muted-foreground">
+            <div className="text-2xl font-bold">{stats.totalProducts}</div>
+            <p className="text-xs text-muted-foreground">
               produtos cadastrados
             </p>
           </CardContent>
@@ -58,12 +58,12 @@ export default function DashboardPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-lg font-semibold">Vendas</CardTitle>
-            <ShoppingCart className="h-5 w-5 text-muted-foreground" />
+            <CardTitle className="text-base font-semibold">Vendas</CardTitle>
+            <ShoppingCart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">{stats.totalSales}</div>
-            <p className="text-sm text-muted-foreground">
+            <div className="text-2xl font-bold">{stats.totalSales}</div>
+            <p className="text-xs text-muted-foreground">
               vendas realizadas
             </p>
           </CardContent>
@@ -71,14 +71,14 @@ export default function DashboardPage() {
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-lg font-semibold">Hoje</CardTitle>
-            <DollarSign className="h-5 w-5 text-muted-foreground" />
+            <CardTitle className="text-base font-semibold">Hoje</CardTitle>
+            <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold">
+            <div className="text-2xl font-bold">
               {formatCurrency(stats.totalToday)}
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               vendido hoje
             </p>
           </CardContent>

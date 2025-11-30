@@ -31,7 +31,7 @@ export function AddProductModal({
   onAdd,
 }: AddProductModalProps) {
   const [selectedProductId, setSelectedProductId] = useState('');
-  const [quantity, setQuantity] = useState('1');
+  const [quantity, setQuantity] = useState('');
   const [error, setError] = useState('');
 
   const products = getProducts();
@@ -88,7 +88,7 @@ export function AddProductModal({
 
   return (
     <Dialog open={open} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-md w-[calc(100%-2rem)]">
+      <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Adicionar Produto</DialogTitle>
         </DialogHeader>
@@ -137,7 +137,7 @@ export function AddProductModal({
                 setQuantity(e.target.value);
                 setError('');
               }}
-              placeholder="1"
+              placeholder="Ex: 2"
             />
             {error && selectedProductId && (
               <p className="text-sm text-destructive">{error}</p>
@@ -147,26 +147,26 @@ export function AddProductModal({
           {selectedProduct && (
             <div className="p-4 bg-muted rounded-lg space-y-1">
               <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">
+                <span className="text-xs text-muted-foreground">
                   Preço unitário:
                 </span>
-                <span className="font-semibold">
+                <span className="font-semibold text-sm">
                   {formatCurrency(selectedProduct.price)}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-sm text-muted-foreground">Subtotal:</span>
-                <span className="font-bold text-lg">
+                <span className="text-xs text-muted-foreground">Subtotal:</span>
+                <span className="font-bold text-base">
                   {formatCurrency(subtotal)}
                 </span>
               </div>
             </div>
           )}
 
-          <div className="flex flex-col sm:flex-row gap-2 sm:justify-end">
+          <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
             <Button
               type="button"
-              variant="outline"
+              variant="destructive"
               onClick={handleClose}
               className="w-full sm:w-auto"
             >

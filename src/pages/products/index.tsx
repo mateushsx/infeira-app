@@ -59,8 +59,8 @@ export default function ProductsPage() {
     <div className="space-y-6 w-full">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Produtos</h1>
-          <p className="text-lg text-muted-foreground">
+          <h1 className="text-2xl font-bold text-foreground">Produtos</h1>
+          <p className="text-base text-muted-foreground">
             Gerencie seus produtos cadastrados
           </p>
         </div>
@@ -73,7 +73,7 @@ export default function ProductsPage() {
       {products.length === 0 ? (
         <div className="text-center py-12 space-y-4">
           <Package className="h-16 w-16 mx-auto text-muted-foreground" />
-          <p className="text-xl text-muted-foreground">
+          <p className="text-base text-muted-foreground">
             Nenhum produto cadastrado ainda
           </p>
           <Button onClick={handleCreate}>
@@ -116,12 +116,12 @@ export default function ProductsPage() {
               ser desfeita.
             </DialogDescription>
           </DialogHeader>
-          <div className="flex gap-2 justify-end">
-            <Button variant="outline" onClick={() => setDeleteConfirm(null)}>
+          <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+            <Button variant="destructive" onClick={() => setDeleteConfirm(null)}>
               Cancelar
             </Button>
             <Button
-              variant="destructive"
+              variant="default"
               onClick={() => deleteConfirm && handleDelete(deleteConfirm)}
             >
               Excluir

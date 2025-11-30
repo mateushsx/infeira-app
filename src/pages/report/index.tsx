@@ -25,8 +25,8 @@ export default function ReportPage() {
   return (
     <div className="space-y-6 w-full">
       <div>
-        <h1 className="text-3xl font-bold text-foreground">Relatório</h1>
-        <p className="text-lg text-muted-foreground">
+        <h1 className="text-2xl font-bold text-foreground">Relatório</h1>
+        <p className="text-base text-muted-foreground">
           Visualize suas vendas e estatísticas
         </p>
       </div>
@@ -46,10 +46,10 @@ export default function ReportPage() {
             <CardTitle>Total do Período Selecionado</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-3xl font-bold text-primary">
+            <div className="text-2xl font-bold text-primary">
               {formatCurrency(filteredTotal)}
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs text-muted-foreground">
               {filteredSales.length} venda(s) no período
             </p>
           </CardContent>

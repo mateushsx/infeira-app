@@ -17,7 +17,7 @@ export function SaleCard({ sale, onEdit, onDelete }: SaleCardProps) {
     <Card>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-xl">
+          <CardTitle className="text-lg">
             {sale.clientName || 'Cliente não informado'}
           </CardTitle>
           <Badge variant="secondary">{formatCurrency(sale.total)}</Badge>

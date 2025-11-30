@@ -14,14 +14,14 @@ export function ProductCard({ product, onEdit, onDelete }: ProductCardProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-xl">{product.name}</CardTitle>
+        <CardTitle className="text-lg">{product.name}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex items-center justify-between">
-          <span className="text-lg font-semibold text-foreground">
+          <span className="text-base font-semibold text-foreground">
             {formatCurrency(product.price)}
           </span>
-          <span className="text-sm text-muted-foreground">
+          <span className="text-xs text-muted-foreground">
             por {product.unit}
           </span>
         </div>

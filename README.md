@@ -77,4 +77,4 @@ src/
 
 ## 📝 Licença
 
-Este projeto é privado.
+Este projeto está licenciado sob a [MIT License](LICENSE).

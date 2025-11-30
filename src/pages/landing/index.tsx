@@ -41,6 +41,7 @@ export default function LandingPage() {
   const handleInstall = async () => {
     if (!deferredPrompt) {
       navigate('/onboarding');
+
       return;
     }
 
@@ -116,3 +117,4 @@ export default function LandingPage() {
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-import { getUser } from "@/services/storage/user";
+import { getUser } from '@/services/storage/user';
 
 export function TopBar() {
   const user = getUser();
@@ -11,11 +11,11 @@ export function TopBar() {
         </div>
         {user && (
           <div className="text-xs text-muted-foreground">
-            Olá, <span className="font-semibold text-foreground">{user.name}</span>
+            Olá,{' '}
+            <span className="font-semibold text-foreground">{user.name}</span>
           </div>
         )}
       </div>
     </header>
   );
 }
-

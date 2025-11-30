@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 245 253 250;
+    --foreground: 26 26 26;
+    --card: 255 255 255;
+    --card-foreground: 26 26 26;
+    --primary: 28 163 124;
+    --primary-foreground: 255 255 255;
+    --secondary: 255 138 0;
+    --secondary-foreground: 255 255 255;
+    --border: 229 229 229;
+    --input: 229 229 229;
+    --ring: 28 163 124;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-size: 18px;
+    line-height: 1.6;
+  }
+}
+
+@layer components {
+  .btn-large {
+    @apply px-6 py-4 text-lg font-semibold rounded-lg min-h-[56px] flex items-center justify-center gap-2;
+  }
+
+  .card-large {
+    @apply bg-card rounded-xl p-6 shadow-sm border border-border;
+  }
+
+  .input-large {
+    @apply w-full px-4 py-3 text-lg rounded-lg border border-input bg-background;
+  }
+}
+
+@layer utilities {
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-from-bottom {
+    from {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-in {
+    animation: fade-in 0.6s ease-out;
+  }
+
+  .fade-in {
+    animation: fade-in 0.6s ease-out;
+  }
+
+  .slide-in-from-bottom-4 {
+    animation: slide-in-from-bottom 0.8s ease-out;
+  }
+}
